@@ -30,13 +30,13 @@ public class data_insert_2 {
         int targetSuccessCount = 30000000;
         do {
             // 创建一个线程池
-            ExecutorService pool = Executors.newFixedThreadPool(10);  // 根据需要更改线程池的大小
+            ExecutorService pool = Executors.newFixedThreadPool(10);
             CountDownLatch latch = new CountDownLatch(10);
             for (int i = 0; i < 10; i++) {
                 pool.execute(() -> {
                     //获取连接对象
                     try (Connection connection = DriverManager.getConnection(url, user, password)) {
-                        for (int j = 0; j < 100; j++) { // 每个线程注入100条
+                        for (int j = 0; j < 100; j++) {
                             //添加数据
                             PreparedStatement statement = connection.prepareStatement(
                                     "INSERT IGNORE INTO bwtest(uid, status, business, create_time, update_time) VALUES (?, ?, ?, ?, ?)");
